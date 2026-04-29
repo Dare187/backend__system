@@ -18,6 +18,8 @@
         "name": "next"
       }
     ],
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".", 
     "paths": {
       "@/*": ["./*"]
     }
@@ -29,6 +31,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "app/api/auth/[...nextauth]/route.js"  ],
   "exclude": ["node_modules"]
 }
