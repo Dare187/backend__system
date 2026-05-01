@@ -2,6 +2,8 @@
 import bcrypt from "bcrypt"
 import { NextResponse } from "next/server"
 import prisma from "@/lib/prisma"
+
+
 export async function POST(request, response) {
     try {
         const body = await request.json();
@@ -13,9 +15,11 @@ export async function POST(request, response) {
             data:{
                 email,
                 name,
-                hashesPassword,
+                hashedPassword: hashedPassword,
             },
         });
+
+        console.log("REGISTER API HIT");
 
         return NextResponse.json(user)
     } catch (error) {
