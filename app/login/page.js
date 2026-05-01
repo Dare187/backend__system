@@ -32,7 +32,7 @@ const Login = () => {
             const res = await signIn('credentials', {email, password, redirect: false});
             console.log(res); // add this
 
-            if (res && !res.error) {
+            if (res?.ok) {
                 router.push('/');
             } else {
                 toast.error('error logging in!');
