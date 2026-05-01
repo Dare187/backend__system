@@ -3,10 +3,15 @@ import NextAuth, { AuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "../../../lib/prismadb"
+import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions = {  
     adapter: PrismaAdapter(prisma),
     providers: [ 
+     GoogleProvider({
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+     }),
         CredentialsProvider({
         name: "Credentials",
         credentials: {
