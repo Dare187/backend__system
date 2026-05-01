@@ -19,11 +19,25 @@ export async function POST(request, response) {
             },
         });
 
+        const existingUser = await prisma.user.findUnique({
+            where: { email },
+        });
+
+        if (existingUser) {
+            return NextResponse.json(
+            { error: "User already exists" },
+            { status: 409 }
+        );
+        }
+
         console.log("REGISTER API HIT");
 
         return NextResponse.json(user)
     } catch (error) {
         console.log(error);
-        return NextResponse.json(400);     
+        return NextResponse.json(
+  { error: "Something went wrong" },
+  { status: 400 }
+);     
     }
 }

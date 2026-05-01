@@ -75,8 +75,7 @@ const Login = () => {
                 </div>
                 </div>
             <button
-    type="button"
-    onClick={handleSubmit}
+    type="submit"
     className='py-2 px-4 bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-sm'
 >
     Login
