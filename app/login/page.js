@@ -32,7 +32,7 @@ const Login = () => {
             console.log(res); // add this
 
             if (res && !res.error) {
-                router.replace('/');
+                router.push('/');
             } else {
                 toast.error('error logging in!');
             }
