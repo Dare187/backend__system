@@ -2,7 +2,7 @@ import bcrypt from "bcrypt"
 import NextAuth, { AuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import prisma from "../../../lib/prismadb"
+import prisma from "@/lib/prisma"
 import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions = {  
@@ -51,36 +51,10 @@ export const authOptions = {
         secret: process.env.NEXTAUTH_JWT_SECRET,
         },
         secret: process.env.NEXTAUTH_SECRET,
-
-        callbacks: {
-        async signIn({ user, account }) {
-        if (account.provider === "google") {
-            const existingUser = await prisma.user.findUnique({
-            where: { email: user.email },
-            });
-
-            if (!existingUser) {
-            await prisma.user.create({
-                data: {
-                email: user.email,
-                name: user.name,
-                image: user.image,
-                },
-            });
-            }
-        }
-
-        return true;
-        },
-    },
     };
 
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
-
-const handler = NextAuth(authOptions);
-
-export { handler as GET, handler as POST }
      
 

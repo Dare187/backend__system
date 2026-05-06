@@ -30,7 +30,7 @@ const Login = () => {
         }
         try {
             const res = await signIn('credentials', {email, password, redirect: false});
-            console.log("Google ID:", process.env.GOOGLE_CLIENT_ID);
+            console.log(res); // add this
 
             if (res?.ok) {
                 router.push('/');

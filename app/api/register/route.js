@@ -19,7 +19,7 @@ export async function POST(request, response) {
             },
         });
 
-        console.log("REGISTER API HIT");
+        console.log("NEXTAUTH ROUTE LOADED");
 
         return NextResponse.json(user)
     } catch (error) {
