@@ -44,11 +44,40 @@ export const authOptions = {
         session: {
         strategy: "jwt",
         },
+        pages: {
+           signIn: "/login",
+        },
         jwt: {
         secret: process.env.NEXTAUTH_JWT_SECRET,
         },
         secret: process.env.NEXTAUTH_SECRET,
+
+        callbacks: {
+        async signIn({ user, account }) {
+        if (account.provider === "google") {
+            const existingUser = await prisma.user.findUnique({
+            where: { email: user.email },
+            });
+
+            if (!existingUser) {
+            await prisma.user.create({
+                data: {
+                email: user.email,
+                name: user.name,
+                image: user.image,
+                },
+            });
+            }
+        }
+
+        return true;
+        },
+    },
     };
+
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
 
 const handler = NextAuth(authOptions);
 
