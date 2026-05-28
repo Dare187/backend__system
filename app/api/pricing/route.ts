@@ -1,0 +1,171 @@
+import { NextResponse } from 'next/server'
+
+const pricingPlans = [
+  {
+    id: 'foundation',
+    name: 'Foundation',
+    price: null,
+    currency: 'NGN',
+    label: 'Let\'s talk',
+    description: 'Go to market creation',
+    popular: false,
+    features: [
+      'Market Research',
+      'Roadmapping - Basic',
+      'UI/UX Design - Template',
+      'Codebase Ownership',
+      'Response Time - 48h',
+    ],
+    cta: 'Select Plan',
+  },
+  {
+    id: 'launch',
+    name: 'Launch',
+    price: 600000,
+    currency: 'NGN',
+    label: '₦600K',
+    description: 'Go to market creation',
+    popular: false,
+    features: [
+      'Market Research',
+      'Roadmapping - 6 Month',
+      'UI/UX Design - Custom',
+      'Codebase Ownership',
+      'Response Time - 48h',
+    ],
+    cta: 'Select Plan',
+  },
+  {
+    id: 'growth',
+    name: 'Growth Engine',
+    price: 1800000,
+    currency: 'NGN',
+    label: '₦1.8M',
+    description: 'Scaling operations',
+    popular: true,
+    features: [
+      'Market Research',
+      'Roadmapping - Quarterly',
+      'UI/UX Design - Iterative',
+      'Codebase Ownership',
+      'Full MVP Development',
+      'Brand & Visual Identity',
+      'Go To Market Plan',
+      'Response Time - 12h',
+      'Dedicated Manager',
+    ],
+    cta: 'Get Started',
+  },
+  {
+    id: 'infrastructure',
+    name: 'Infrastructure',
+    price: 900000,
+    currency: 'NGN',
+    label: '₦900K',
+    description: 'Scaling operations',
+    popular: false,
+    features: [
+      'Market Research',
+      'Roadmapping - Yearly',
+      'UI/UX Design - System',
+      'Codebase Ownership',
+      'Advanced CRM Setup',
+      'Process Automation',
+      'Deep Tech Integration',
+      'Response Time - 4h',
+      'Dedicated Manager',
+    ],
+    cta: 'Build Infrastructure',
+  },
+  {
+    id: 'flaas',
+    name: 'FLaaS',
+    price: 800000,
+    currency: 'NGN',
+    label: '₦800K/mo',
+    description: 'Fractional tech leadership',
+    popular: false,
+    features: [
+      'Fractional CTO/CMO',
+      'Hands-on GTM Execution',
+      'Priority 1:1 Support',
+      'Pre Built Support',
+      'Enterprise Accounts',
+      'Quarterly Roadmapping',
+    ],
+    cta: 'Contact Sales',
+  },
+]
+
+export async function GET() {
+  return NextResponse.json({
+    plans: pricingPlans,
+    featureMatrix: {
+      categories: [
+        {
+          name: 'Strategy & Planning',
+          features: [
+            {
+              name: 'Market Research',
+              foundation: false,
+              launch: true,
+              growth: true,
+              infrastructure: true,
+              flaas: true,
+            },
+            {
+              name: 'Roadmapping',
+              foundation: false,
+              launch: '6-Month',
+              growth: 'Quarterly',
+              infrastructure: 'Yearly',
+              flaas: 'Continuous',
+            },
+          ],
+        },
+        {
+          name: 'Design & Deliverables',
+          features: [
+            {
+              name: 'UI/UX Design',
+              foundation: 'Template',
+              launch: 'Custom',
+              growth: 'Iterative',
+              infrastructure: 'System',
+              flaas: 'Full Custom',
+            },
+            {
+              name: 'Codebase Ownership',
+              foundation: true,
+              launch: true,
+              growth: true,
+              infrastructure: true,
+              flaas: true,
+            },
+          ],
+        },
+        {
+          name: 'Support & Management',
+          features: [
+            {
+              name: 'Response Time',
+              foundation: '48h',
+              launch: '24h',
+              growth: '12h',
+              infrastructure: '4h',
+              flaas: '1h (VIP)',
+            },
+            {
+              name: 'Dedicated Manager',
+              foundation: false,
+              launch: false,
+              growth: true,
+              infrastructure: true,
+              flaas: true,
+            },
+          ],
+        },
+      ],
+    },
+  })
+}
